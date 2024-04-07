@@ -1,0 +1,10 @@
+{
+  "python.languageServer": "Pylance",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "[django-html]": {
+    "editor.formatOnSave": false
+  },
+  "python.REPL.enableREPLSmartSend": false
+}
