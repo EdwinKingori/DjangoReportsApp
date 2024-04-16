@@ -8,6 +8,12 @@ from .forms import SalesSearchForm
 
 def home_view(request):
     form = SalesSearchForm(request.POST or None)
+
+    if request.method == "POST":
+        date_from = request.method.get('date_from')
+        date_to = request.method.get('date_to')
+        chart_type = request.method.get('chart_type')
+
     context = {
         'form': form
     }
