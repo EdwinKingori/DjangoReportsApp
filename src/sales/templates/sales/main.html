@@ -7,7 +7,10 @@
     <h2>Sales list</h2>
 
     {% for object in object_list  %}
-      <a href="{{object.get_absolute_url}}">{{object.transaction_id }}</a>
+      <div class='card mb-3'>
+         <a href="{{object.get_absolute_url}}" class='card-body'>{{object.transaction_id }}</a>
+      </div>
+      
     {% endfor %}
     
  {% endblock content %}

@@ -14,6 +14,9 @@ def home_view(request):
         date_to = request.method.get('date_to')
         chart_type = request.method.get('chart_type')
 
+    qs = Sale.objects.all()
+    print(qs)
+
     context = {
         'form': form
     }
