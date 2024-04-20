@@ -8,6 +8,7 @@ import pandas as pd
 
 
 def home_view(request):
+    sales_df = None
     form = SalesSearchForm(request.POST or None)
 
     if request.method == "POST":
@@ -21,8 +22,10 @@ def home_view(request):
         print(qs.values())
         print(qs.values_list())
         if len(qs) > 0:
-            df1 = pd.DataFrame(qs.values())
-            print(df1)
+            sales_df = pd.DataFrame(qs.values())
+
+            sales_df = sales_df.to_html()
+            print(sales_df)
         else:
             print("Data Not Found!")
         # obj = Sale.objects.get(id=1)
@@ -30,7 +33,8 @@ def home_view(request):
         # print(obj)
 
     context = {
-        'form': form
+        'form': form,
+        'sales_df': sales_df
     }
     return render(request, 'sales/home.html', context)
 
