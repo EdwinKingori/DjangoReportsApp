@@ -21,9 +21,16 @@
     <br>
 
     {% if sales_df %}
+    <h1>Sales Data</h1>
         {{sales_df|safe}}
+        <hr>
+        <h1>Positions Data</h1>
+        {{positions_df|safe}}
     {% else %}
         <h3> No Data Found!</h3>
     {% endif %}
+
+    
+
 
 {% endblock content %}
