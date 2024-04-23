@@ -23,13 +23,17 @@
     {% if sales_df %}
     <h1>Sales Data</h1>
         {{sales_df|safe}}
-        <hr>
-        <h1>Positions Data</h1>
+        <br>
+        <h3>Positions Data</h3>
         {{positions_df|safe}}
 
         <br>
-        <h1>Merged DataFrame</h1>
+        <h3>Merged DataFrame</h3>
         {{merged_df|safe}}
+
+        <br>
+        <h3>GroupedBy DataFrame</h3>
+        {{df|safe}}
     {% else %}
         <h3> No Data Found!</h3>
     {% endif %}
