@@ -34,6 +34,9 @@
         <br>
         <h3>GroupedBy DataFrame</h3>
         {{df|safe}}
+        <br>
+        <h3>Chart</h3>
+        <img src="data:image/png;base64, {{chart|safe}}">
     {% else %}
         <h3> No Data Found!</h3>
     {% endif %}
