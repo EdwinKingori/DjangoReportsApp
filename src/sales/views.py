@@ -22,6 +22,7 @@ def home_view(request):
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
         chart_type = request.POST.get('chart_type')
+        results_by = request.POST.get('results_by')
         # print(date_from, date_to, chart_type)
 
         sale_qs = Sale.objects.filter(
@@ -58,7 +59,7 @@ def home_view(request):
                 'price'].agg('sum')
 
             chart = get_chart(
-                chart_type, df, labels=df['transaction_id'].values)
+                chart_type, sales_df, results_by)
             print('chart', chart)
 
             sales_df = sales_df.to_html()
