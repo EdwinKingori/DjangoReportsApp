@@ -35,6 +35,11 @@
         </div>
     </div>
 
+    {% if no_data %}
+        <div class="alert alert-warning" role="alert">
+            {{no_data}} 
+        </div>
+    {% endif %}
 
 
     <h1> Sales Report app</h1>
@@ -64,8 +69,7 @@
         <h3>Chart</h3>
         <img src="data:image/png;base64, {{chart|safe}}" id='img'>
         
-    {% else %}
-        <h3> No Data Found!</h3>
+    
     {% endif %}
 
     <br>

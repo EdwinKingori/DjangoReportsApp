@@ -15,6 +15,8 @@ def home_view(request):
     merged_df = None
     df = None
     chart = None
+    no_data = None
+
     search_form = SalesSearchForm(request.POST or None)
     report_form = ReportForm()
 
@@ -66,8 +68,9 @@ def home_view(request):
             positions_df = positions_df.to_html()
             merged_df = merged_df.to_html()
             df = df.to_html()
+
         else:
-            print("Data Not Found!")
+            no_data = "No data is available in this date range!"
 
         # obj = Sale.objects.get(id=1)
         # print(qs)
@@ -81,6 +84,7 @@ def home_view(request):
         'merged_df': merged_df,
         'df': df,
         'chart': chart,
+        'no_data': no_data,
     }
     return render(request, 'sales/home.html', context)
 
