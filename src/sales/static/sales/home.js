@@ -30,4 +30,19 @@ reportForm.addEventListener('submit', e=>{
     formData.append('name', reportName.value)
     formData.append('remarks',reportRemarks.value)
     formData.append('image', img.src)
+
+    $.ajax({
+        type: 'POST',
+        url:'',
+        data: formData,
+        success: function(response){
+            console.log(response)
+        },
+        error:function(error){
+            console.log(error)
+        },
+        processData: false,
+        contentType: false,
+    })
 })
+
