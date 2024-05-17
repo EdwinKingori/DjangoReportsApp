@@ -21,29 +21,32 @@ reportBtn.addEventListener('click', ()=>{
     console.log('clicked')
     img.setAttribute('class', 'w-100')
     modalBody.prepend(img)
-})
 
-reportForm.addEventListener('submit', e=>{
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append('csrfmiddlewaretoken', csrf)
-    formData.append('name', reportName.value)
-    formData.append('remarks',reportRemarks.value)
-    formData.append('image', img.src)
+    console.log(img.src)
+    
+    reportForm.addEventListener('submit', e=>{
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('csrfmiddlewaretoken', csrf)
+        formData.append('name', reportName.value)
+        formData.append('remarks',reportRemarks.value)
+        formData.append('image', img.src)
 
-    $.ajax({
-        type: 'POST',
-        url:'/reports/save/',
-        data: formData,
-        
-        success: function(response){
-            console.log(response)
-        },
-        error:function(error){
-            console.log(error)
-        },
-        processData: false,
-        contentType: false,
+        $.ajax({
+            type: 'POST',
+            url:'/reports/save/',
+            data: formData,
+
+            success: function(response){
+                console.log(response)
+            },
+            error:function(error){
+                console.log(error)
+            },
+            processData: false,
+            contentType: false,
+        })
     })
 })
+
 
