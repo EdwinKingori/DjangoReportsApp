@@ -33,8 +33,9 @@ reportForm.addEventListener('submit', e=>{
 
     $.ajax({
         type: 'POST',
-        url:'',
+        url:'/reports/save/',
         data: formData,
+        
         success: function(response){
             console.log(response)
         },
