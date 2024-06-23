@@ -10,7 +10,7 @@
 
 
 {% block title %}
-    home
+    sales
 {% endblock title %}
 
 {% block content %}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-body" id="modal-body">
                     <div id="alert-box"></div>
-                <form id="report-form"action="">
+                <form id="report-form">
                     {% csrf_token %}
                     {{report_form|crispy}}
                     <button type="submit" class="btn btn-info mt-2 ">Save</button>
