@@ -11,7 +11,7 @@ const reportRemarks = document.getElementById('id_remarks')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
 
 const handleAlerts = (type, msg) => {
-    alertBox.innerHtml = `
+    alertBox.innerHTML = `
         <div class="alert alert-${type}" role="alert">
             ${msg}
         </div>
