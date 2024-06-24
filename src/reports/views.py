@@ -1,10 +1,11 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, get_object_or_404
 from profiles.models import Profile
 from django.http import JsonResponse
 from .utils import get_report_image
 from .models import Report
 from django.views.generic import ListView, DetailView
 
+# source(https: // xhtml2pdf.readthedocs.io/en/latest/usage.html)
 import os
 from django.conf import settings
 from django.http import HttpResponse
@@ -41,9 +42,10 @@ def create_report_view(request):
 # source (https://xhtml2pdf.readthedocs.io/en/latest/usage.html)
 
 
-def render_pdf_view(request):
+def render_pdf_view(request, pk):
     template_path = 'reports/pdf.html'
-    context = {'Hello': 'Hello there from pdf'}
+    obj = get_object_or_404(Report, pk=pk)
+    context = {'obj': obj}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
     # If download:
