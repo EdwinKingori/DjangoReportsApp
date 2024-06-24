@@ -17,3 +17,7 @@ class Report(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+    class Meta:
+        # odering the report list from the erliest to latest
+        ordering = ('-created',)
