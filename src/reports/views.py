@@ -30,6 +30,7 @@ class UploadTemplateView(TemplateView):
 
 
 def csv_upload_view(request):
+
     return HttpResponse()
 
 
