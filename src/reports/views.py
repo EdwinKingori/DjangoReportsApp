@@ -12,6 +12,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
+from sales.models import Sale, Position, CSV
+import csv
 # Create your views here.
 
 
@@ -30,6 +32,23 @@ class UploadTemplateView(TemplateView):
 
 
 def csv_upload_view(request):
+    print("file is being sent")
+
+    if request.method == 'POST':
+        csv_file = request.FILES.get('file')
+        obj = CSV.objects.create(file_name=csv_file)
+
+        with open(obj.file_name.path, 'r') as f:
+            reader = csv.reader(f)
+            reader.__next__()
+            for row in reader:
+                print(row, type(row))
+                data = "".join(row)
+                print(data, type(data))
+                data = data.split(";")
+                print(data, type(data))
+                data.pop()
+                print(data)
 
     return HttpResponse()
 
