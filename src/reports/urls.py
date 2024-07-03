@@ -15,6 +15,7 @@ urlpatterns = [
     path('save/', create_report_view, name='create-report'),
     path('upload/', csv_upload_view, name='upload'),
     path('from_file/', UploadTemplateView.as_view(), name='from-file'),
+    path('from_file/reports/upload/', csv_upload_view, name='upload_report'),
     path('<pk>', ReportDetailView.as_view(), name='detail'),
     path('<pk>/pdf', render_pdf_view, name='pdf'),
 ]
