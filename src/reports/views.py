@@ -13,7 +13,11 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 from sales.models import Sale, Position, CSV
+from products.models import Product
+from customers.models import Customer
 import csv
+from django.utils.dateparse import parse_date
+
 # Create your views here.
 
 
@@ -42,13 +46,33 @@ def csv_upload_view(request):
             reader = csv.reader(f)
             reader.__next__()
             for row in reader:
-                print(row, type(row))
                 data = "".join(row)
-                print(data, type(data))
-                data = data.split(";")
-                print(data, type(data))
+                data = data.split(';')
                 data.pop()
-                print(data)
+
+                # storing the items above in different variables
+                transaction_id = data[1]
+                product = data[2]
+                quantity = int(data[3])
+                customer = data[4]
+                date = parse_date(data[5])
+
+                try:
+                    product_obj = Product.objects.get(name__iexact=product)
+                except Product.DoesNotExist:
+                    product_obj = None
+
+                if product_obj is not None:
+                    customer_obj, _ = Customer.objects.get_or_create(
+                        name=customer)
+                    salesman_obj = Profile.objects.get(user=request.user)
+                    position_obj = Position.objects.create(
+                        product=product_obj, quantity=quantity, created=date)
+
+                    sale_obj = Sale.objects.get_or_create(
+                        transaction_id=transaction_id, customer=customer_obj, created=date)
+                    sale_obj.positions.add(position_obj)
+                    sale_obj.save()
 
     return HttpResponse()
 
