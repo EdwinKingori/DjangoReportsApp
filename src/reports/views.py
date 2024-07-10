@@ -51,13 +51,6 @@ def csv_upload_view(request):
                 reader = csv.reader(f)
                 reader.__next__()  # skipping the header row
                 for row in reader:
-                    data = "".join(row)
-                    data = data.split(';')
-                    data.pop()
-
-                    if len(data) < 5:
-                        continue
-
                     # storing the items above in different variables
                     transaction_id = row[0]
                     product = row[1]
@@ -77,11 +70,13 @@ def csv_upload_view(request):
                         position_obj = Position.objects.create(
                             product=product_obj, quantity=quantity, created=date)
 
-                        sale_obj = Sale.objects.get_or_create(
+                        sale_obj, _ = Sale.objects.get_or_create(
                             transaction_id=transaction_id, customer=customer_obj, salesman=salesman_obj, created=date)
                         sale_obj.positions.add(position_obj)
                         sale_obj.save()
-
+                return JsonResponse({'ex': False})
+        else:
+            return JsonResponse({'ex': True})
     return HttpResponse()
 
 
