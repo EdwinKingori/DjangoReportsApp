@@ -17,7 +17,7 @@ from products.models import Product
 from customers.models import Customer
 import csv
 from django.utils.dateparse import parse_date
-import logging
+
 
 # Create your views here.
 
@@ -51,13 +51,11 @@ def csv_upload_view(request):
                 reader = csv.reader(f)
                 reader.__next__()  # skipping the header row
                 for row in reader:
-                    logging.info(f"Processing row: {row}")
-                    # data = "".join(row)
-                    # data = data.split(';')
-                    # data.pop()
+                    data = "".join(row)
+                    data = data.split(';')
+                    data.pop()
 
-                    if len(row) < 5:
-                        logging.error(f"Row has insufficient columns: {row}")
+                    if len(data) < 5:
                         continue
 
                     # storing the items above in different variables
@@ -80,7 +78,7 @@ def csv_upload_view(request):
                             product=product_obj, quantity=quantity, created=date)
 
                         sale_obj = Sale.objects.get_or_create(
-                            transaction_id=transaction_id, customer=customer_obj, created=date)
+                            transaction_id=transaction_id, customer=customer_obj, salesman=salesman_obj, created=date)
                         sale_obj.positions.add(position_obj)
                         sale_obj.save()
 
