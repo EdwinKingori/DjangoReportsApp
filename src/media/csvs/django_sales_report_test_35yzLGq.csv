@@ -1,0 +1,14 @@
+POS,Transaction_id,Product,Quantity,Customer,Date
+1,E100,TV,2,ACD,2024-06-19
+2,E100,TV,1,Test cust 1,2024-06-20
+3,E200,Laptop,3,ABC,2024-06-21
+4,E600,Smartphone,4,LOL,2024-06-22
+5,E202,Tablet,3,Test cust 2,2024-06-23
+6,E700,Headphones,1,Test cust 3,2024-06-24
+7,E700,Headphones,4,Test cust 4,2024-06-25
+8,E600,Smartphone,3,ABC,2024-06-26
+9,E500,Smartwatch,5,ABC,2024-06-27
+10,E400,Microwave,1,NewClient,2024-06-28
+11,E400,Microwave,2,Client1,2024-06-29
+12,E200,Laptop,5,Customer,2024-06-30
+13,E900,Radio,3,Test User,2024-07-01
