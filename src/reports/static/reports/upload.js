@@ -1,6 +1,13 @@
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value 
 const alertBox = document.getElementById('alert-box')
 
+const handleAlerts = (type, msg) => {
+    alertBox.innerHTML = `
+        <div class="alert alert-${type}" role="alert">
+            ${msg}
+        </div>
+    `
+}
 
 Dropzone.autoDiscover = false
 const myDropzone = new Dropzone('#my-dropzone', {
@@ -14,13 +21,15 @@ const myDropzone = new Dropzone('#my-dropzone', {
             console.log(response)
             const ex = response.ex
             if(ex){
-                alertBox.innerHTML = `<div class="alert alert-danger" role="alert">
-                    File already exists!
-                </div>`
+                // replace div with handlealert function
+                handleAlerts('danger', 'File already exists!')
+                 // alertBox.innerHTML = `<div class="alert alert-danger" role="alert">
+                  //   File already exists!
+               //  </div>`
             } else {
-                alertBox.innerHTML = `<div class="alert alert-success" role="alert">
-                    Your file has been uploaded!
-                </div`
+                // replace with handlealert function
+                handleAlerts('success','Your file has been uploaded!')
+                
             }
         })
     },
