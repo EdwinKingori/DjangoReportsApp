@@ -13,6 +13,12 @@
     background-color: #9c6a6a;
 }
 
+.avatar-sm{
+    height: 30px;
+    width: auto;
+    border-radius: 50%;
+}
+
 .avatar-big {
     height: 200px;
     width: 200px;
