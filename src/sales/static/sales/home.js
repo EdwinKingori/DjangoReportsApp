@@ -44,6 +44,7 @@ reportBtn.addEventListener('click', ()=>{
             success: function(response){
                 console.log(response)
                 handleAlerts('success', 'Report Created')
+                reportForm.reset() // resets forms after it has been filled & updated with user remarks
             },
             error:function(error){
                 console.log(error)
