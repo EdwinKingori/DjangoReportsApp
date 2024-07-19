@@ -5,10 +5,41 @@
 {% endblock title %}
 
 {% block content %}
+    <div class="col-3">
+        <div class="col-3">
+            <img src="{{object.customer.logo.url}}" class="img-fluid" alt="{{object.customer.name}}">
+        </div>
 
-    {{object.pk}}
+        <div class="col-9">
+            <ul>
+                <li>Transaction id: <b> {{object.transaction_id}}</b></li>
+                <li>Salesman id: <b> {{object.alesman.user.username}}</b></li>
+            </ul>
+        </div>
+    </div>
 
-    <br>
-    {{object.transaction_id}}
+    <!-- Table from bootstrap: https://getbootstrap.com/docs/5.3/content/tables/#overview -->
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pos in object.get_positions %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{pos.product.name}}</td>
+                    <td>{{pos.quantity}}</td>
+                    <td>{{pos.price}}</td>
+                    <td>{{pos.get_customer_name}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+</table>
 
 {% endblock content %}
